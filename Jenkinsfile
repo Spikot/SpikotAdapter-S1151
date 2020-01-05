@@ -13,12 +13,12 @@ pipeline{
         }
         stage('compile'){
             steps{
-                sh './gradlew build'
+                sh './gradlew -PnexusUser=${MAVEN_CREDENTIAL_USR} -PnexusPassword=${MAVEN_CREDENTIAL_PSW} clean build'
             }
         }
         stage('test'){
             steps{
-                sh './gradlew -PnexusUser=${MAVEN_CREDENTIAL_USR} -PnexusPassword=${MAVEN_CREDENTIAL_PSW} clean test'
+                sh './gradlew -PnexusUser=${MAVEN_CREDENTIAL_USR} -PnexusPassword=${MAVEN_CREDENTIAL_PSW} test'
             }
         }
         stage('create plugin'){
